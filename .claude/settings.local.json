@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -r \"scandir\\\\|external-modules\\\\|src\" C:/Projects/vs-sandbox/_bmad/ --include=*.yaml --include=*.md -l)",
+      "Bash(xargs grep:*)",
+      "Bash(git:*)",
+      "Bash(npm view:*)",
+      "Bash(npm cache:*)",
+      "Bash(npm install:*)",
+      "Bash(pnpm add:*)",
+      "Bash(npx bmad-method:*)",
+      "Bash(python:*)",
+      "Bash(python3 \"C:\\\\Projects\\\\vs-sandbox\\\\.claude\\\\skills\\\\bmad-init\\\\scripts\\\\bmad_init.py\" load --project-root \"C:\\\\Projects\\\\vs-sandbox\" --all)",
+      "Bash(py \"C:\\\\Projects\\\\vs-sandbox\\\\.claude\\\\skills\\\\bmad-init\\\\scripts\\\\bmad_init.py\" load --project-root \"C:\\\\Projects\\\\vs-sandbox\" --all)",
+      "Bash(ls:*)",
+      "Bash(find /c/Projects/vs-sandbox -name bmad-agent-* -type d)",
+      "Bash(npx --version)",
+      "Bash(npm show:*)",
+      "mcp__atlassian-confluence__conf_post",
+      "mcp__atlassian-confluence__conf_get",
+      "mcp__atlassian-jira__jira_post",
+      "mcp__atlassian-confluence__conf_put"
+    ]
+  }
+}
