@@ -2,6 +2,7 @@
 
 > **Type:** Living document — update as stakeholders change throughout the project.
 > **Last Updated:** YYYY-MM-DD
+> **Confluence:** [URL — add when Confluence page is created, leave blank for Jira-only projects]
 
 ---
 

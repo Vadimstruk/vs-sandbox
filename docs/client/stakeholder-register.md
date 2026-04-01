@@ -2,6 +2,7 @@
 
 > **Type:** Living document — update as stakeholders change throughout the project.
 > **Last Updated:** 2026-03-31
+> **Confluence:** https://vstest.atlassian.net/wiki/spaces/VSSB2/pages/884737
 
 ---
 

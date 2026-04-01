@@ -18,31 +18,91 @@ Documentation and workflow is split into three layers:
 
 ## Folder Structure
 
+> **At project kickoff, the BA must ask:** Is this a **single project** (one codebase, one client product) or a **multi-project** (multiple products sharing a codebase)? The answer determines which folder structure to use.
+
+---
+
+### Single Project
+
+All client-facing documents live directly inside `docs/client/` — no `shared/` subfolder, no project-name subfolder.
+
+```
+docs/
+├── documentation-guide.md          ← this file (master reference)
+│
+├── client/                         ← all client-facing documentation (flat)
+│   ├── glossary.md
+│   ├── assumptions-log.md
+│   ├── stakeholder-register.md
+│   ├── charter/
+│   │   └── project-charter-v1.0.md
+│   ├── prd/
+│   │   └── prd-v1.0.md
+│   ├── srs/
+│   │   └── srs-v1.0.md
+│   └── change-requests/
+│       └── CR-001-[feature-name].md
+│
+├── business-requirements/          ← internal BRs, one per feature
+│   └── business-requirement-YYYY-MM-DD.md
+│
+├── features/                       ← BMad feature specs, one folder per feature area
+│
+├── templates/                      ← document templates
+│   ├── client-communication/
+│   │   ├── kickoff-questionnaire-template.md
+│   │   └── meeting-agenda-template.md
+│   ├── change-request/
+│   │   └── cr-template.md
+│   ├── glossary/
+│   │   └── glossary-template.md
+│   ├── assumptions-log/
+│   │   └── assumptions-log-template.md
+│   ├── stakeholder-register/
+│   │   └── stakeholder-register-template.md
+│   ├── project-charter/
+│   │   └── project-charter-template.md
+│   ├── prd/
+│   │   └── prd-client-template.md
+│   └── srs/
+│       └── srs-template.md
+│
+├── reference/                      ← raw input materials from Sales handoff (not client-facing, not BMad)
+│   └── [sales-notes, transcriptions, client-provided docs]
+├── deep-dives/                     ← technical deep-dives per module
+├── analysis/                       ← brainstorming and analysis sessions
+└── .archive/                       ← superseded versions of versioned documents
+```
+
+---
+
+### Multi-Project
+
+Use this structure when two or more products share a codebase. Documents shared across all products (Glossary, Assumptions Log) live in `docs/client/shared/`. Each product has its own subfolder with its own Stakeholder Register, Charter, PRD, SRS, and Change Requests.
+
 ```
 docs/
 ├── documentation-guide.md          ← this file (master reference)
 │
 ├── client/                         ← all client-facing documentation
-│   ├── shared/                     ← shared across both products
+│   ├── shared/                     ← shared across all products
 │   │   ├── glossary.md
 │   │   ├── assumptions-log.md
 │   │   └── stakeholder-register.md
 │   │
-│   ├── project-1/                 ← Project 1 product
+│   ├── project-1/                  ← Product 1
 │   │   ├── charter/
 │   │   │   └── project-charter-v1.0.md
-│   │   ├── stakeholder-register.md
 │   │   ├── prd/
-│   │   │   └── prd-v2.2.md         ← current version
+│   │   │   └── prd-v1.0.md
 │   │   ├── srs/
 │   │   │   └── srs-v1.0.md
 │   │   └── change-requests/
 │   │       └── CR-001-[feature-name].md
 │   │
-│   └── project-2/            ← Project 2 product
+│   └── project-2/                  ← Product 2
 │       ├── charter/
 │       │   └── project-charter-v1.0.md
-│       ├── stakeholder-register.md
 │       ├── prd/
 │       │   └── prd-v1.0.md
 │       ├── srs/
@@ -68,8 +128,7 @@ docs/
 │   ├── assumptions-log/
 │   │   └── assumptions-log-template.md
 │   ├── stakeholder-register/
-│   │   ├── stakeholder-register-shared-template.md
-│   │   └── stakeholder-register-product-template.md
+│   │   └── stakeholder-register-template.md
 │   ├── project-charter/
 │   │   └── project-charter-template.md
 │   ├── prd/
@@ -77,6 +136,8 @@ docs/
 │   └── srs/
 │       └── srs-template.md
 │
+├── reference/                      ← raw input materials from Sales handoff (not client-facing, not BMad)
+│   └── [sales-notes, transcriptions, client-provided docs]
 ├── deep-dives/                     ← technical deep-dives per module
 ├── analysis/                       ← brainstorming and analysis sessions
 └── .archive/                       ← superseded versions of versioned documents
@@ -96,18 +157,27 @@ This section shows how the BMad workflow and the client-facing layer fit togethe
 
 #### Greenfield (new project)
 
+> **Before starting:** The BA must complete two configuration steps (0a, 0b) and a Sales handoff review (1) before any document is created.
+
 | Step | BMad Workflow / Agent | Client-Facing Document | Sign-off |
 |---|---|---|---|
-| 1 | 📋 Research — market / domain / technical *(optional)* | — internal only — | — |
-| 2 | 📋 Lightweight Brainstorming *(optional)* | — internal only — | — |
-| 3 | 📋 Create Product Brief | 📄 **Project Charter** | ✅ Yes |
-| 4 | 📋 Create PRD | 📄 **Client PRD** | ✅ Yes |
-| 5 | 📋 Create UX Design | UX review with client *(informal)* | Optional |
-| 6 | 📋 Create Architecture | — internal only — | — |
-| 7 | 👤 BA *(manual, no workflow yet)* | 📄 **SRS** *(from PRD + UX + Architecture)* | ✅ Yes |
-| 8 | 📋 Create Epics & Stories | — internal only — | — |
-| 9 | 📋 Check Implementation Readiness | — internal gate — | — |
-| — | *(setup only — living docs)* | 📄 **Stakeholder Register**, **Glossary**, **Assumptions Log** | — |
+| 0a | 👤 BA — confirm project type | **Single project** → flat `client/` structure. **Multi-project** → `client/shared/` + per-product subfolders. See [Folder Structure](#folder-structure). | — |
+| 0b | 👤 BA — confirm tooling setup | **BMad + Jira only** → client-facing docs in git only. **BMad + Jira + Confluence** → client-facing docs mirrored to Confluence; internal/BMad docs stay in git. See [Hybrid Tooling](#hybrid-tooling-git--jira--confluence). | — |
+| 1 | 👤 BA — collect and review pre-kickoff materials | BA receives materials from Sales (notes, transcriptions e.g. Fireflies, client-provided documents) and places them in `docs/reference/`. BA reviews before kickoff. | — |
+| 2 | 👤 BA — Kickoff session | 📄 **Project Charter**, **Stakeholder Register**, **Glossary**, **Assumptions Log** | — |
+| 2a | 👤 BA — Confluence sync *(if Jira + Confluence project)* | Ask user: sync kickoff documents to Confluence? Create/update pages for Charter, Stakeholder Register, Glossary, Assumptions Log. | — |
+| 3 | 📋 Research — market / domain / technical *(optional)* | — internal only — | — |
+| 4 | 📋 Lightweight Brainstorming *(optional)* | — internal only — | — |
+| 5 | 👤 BA — refine Charter if needed, then submit for sign-off | Incorporate any findings from Research or Brainstorming (new constraints, scope clarifications, risks) before sending to client. 📄 **Project Charter** | ✅ Yes |
+| 5a | 👤 BA — Confluence sync *(if Jira + Confluence project)* | Ask user: sync updated Charter to Confluence? | — |
+| 6 | 📋 Create Product Brief | — internal: uses Charter + kickoff artifacts as input — | — |
+| 7 | 📋 Create PRD (BMad internal) | — internal — | — |
+| 8 | 👤 BA — Client PRD *(derived from BMad PRD)* | 📄 **Client PRD** | ✅ Yes |
+| 9 | 📋 Create UX Design | UX review with client *(informal)* | Optional |
+| 10 | 📋 Create Architecture | — internal only — | — |
+| 11 | 👤 BA *(manual, no workflow yet)* | 📄 **SRS** *(from PRD + UX + Architecture)* | ✅ Yes |
+| 12 | 📋 Create Epics & Stories | — internal only — | — |
+| 13 | 📋 Check Implementation Readiness | — internal gate — | — |
 
 > **Note:** An SRS creation workflow is planned for Sarah (BA agent) — not yet built.
 
@@ -115,9 +185,13 @@ This section shows how the BMad workflow and the client-facing layer fit togethe
 
 | Step | BMad Workflow / Agent | Client-Facing Document | Sign-off |
 |---|---|---|---|
-| 1 | 📋 **Document Project** *(replaces steps 1–3 above)* | — internal: feature specs, deep-dives — | — |
-| 2 | 👤 BA *(manual)* | 📄 **SRS** *(create from existing knowledge if missing, or validate existing)* | ✅ Yes |
-| 3 | Continue from Create Architecture onwards | same as greenfield | — |
+| 0a | 👤 BA — confirm project type | Single or multi-project — determines folder structure. | — |
+| 0b | 👤 BA — confirm tooling setup | BMad + Jira only, or BMad + Jira + Confluence. | — |
+| 1 | 👤 BA — collect and review pre-kickoff materials | BA receives materials from Sales and places them in `docs/reference/`. For brownfield: existing specs, legacy docs, and prior work also placed here by BA. | — |
+| 2 | 👤 BA — Kickoff session | 📄 **Project Charter**, **Stakeholder Register**, **Glossary**, **Assumptions Log** | — |
+| 3 | 📋 **Document Project** | — internal: feature specs, deep-dives from existing system — | — |
+| 4 | 👤 BA *(manual)* | 📄 **SRS** *(create from existing knowledge if missing, or validate existing)* | ✅ Yes |
+| 5 | Continue from Create Architecture onwards | same as greenfield steps 10–13 | — |
 
 ---
 
@@ -233,7 +307,9 @@ Quick Spec / Quick Dev bypasses the CR → BR client sign-off gate. This is acce
 
 ---
 
-### Client-Facing — Shared (`docs/client/shared/`)
+### Client-Facing — Shared (`docs/client/shared/`) — Multi-Project Only
+
+> This section applies only to **multi-project** setups. For single-project setups, the Glossary and Assumptions Log live directly in `docs/client/` alongside all other client-facing documents.
 
 #### Glossary (`glossary.md`)
 - **Purpose:** Single source of truth for domain terminology. All project documents must use terms exactly as defined here.
@@ -242,14 +318,16 @@ Quick Spec / Quick Dev bypasses the CR → BR client sign-off gate. This is acce
 - **Owner:** BA
 
 #### Assumptions & Constraints Log (`assumptions-log.md`)
-- **Purpose:** Records all assumptions made during requirements and development, and formal constraints that shape the system. Each assumption has a status (Open / Confirmed / Invalidated / Superseded) and is tagged by product (P1 / P2 / Both).
+- **Purpose:** Records all assumptions made during requirements and development, and formal constraints that shape the system. Each assumption has a status (Open / Confirmed / Invalidated / Superseded) and is tagged by product if multi-project.
 - **Audience:** BA, PM, client for review.
 - **Update frequency:** Living document. Add assumptions as they are identified. Update status when validated or proven wrong. Never delete — update in place.
 - **Owner:** BA (assumptions), PM (process and delivery assumptions)
 
-#### Stakeholder Register — pointer (`stakeholder-register.md`)
-- **Purpose:** Index pointing to the product-specific stakeholder registers.
-- **Update frequency:** Only if products are added or removed.
+#### Stakeholder Register (`stakeholder-register.md`)
+- **Purpose:** Single register covering all stakeholders across all products — delivery team, client contacts, end user groups, and external systems. Structured with shared people in sections 1–3 and a per-product RACI subsection for each product. Keeping it shared avoids duplicating stakeholder entries and ensures there is one place to update when roles or contacts change.
+- **Audience:** PM, BA, client.
+- **Update frequency:** Living document. Update when team members change, new stakeholders are identified, or roles shift.
+- **Owner:** PM
 
 ---
 
@@ -263,8 +341,8 @@ Quick Spec / Quick Dev bypasses the CR → BR client sign-off gate. This is acce
 - **Owner:** PM (with BA input)
 - **Client sign-off required:** Yes
 
-#### Stakeholder Register (`stakeholder-register.md`)
-- **Purpose:** Full list of all stakeholders — client contacts, delivery team, end user groups, and external systems. Includes roles, responsibilities, and RACI matrix.
+#### Stakeholder Register (`stakeholder-register.md`) — Single Project Only
+- **Purpose:** Full list of all stakeholders — client contacts, delivery team, end user groups, and external systems. Includes roles, responsibilities, and RACI matrix. Lives in `docs/client/` for single-project setups. For multi-project setups, the Stakeholder Register lives in `docs/client/shared/` — see above.
 - **Audience:** PM, BA, client.
 - **Update frequency:** Living document. Update when team members change, new stakeholders are identified, or roles shift.
 - **Owner:** PM
@@ -327,9 +405,8 @@ Quick Spec / Quick Dev bypasses the CR → BR client sign-off gate. This is acce
 | Meeting Agenda | `client-communication/meeting-agenda-template.md` | Recurring client calls |
 | Change Request | `change-request/cr-template.md` | Every new feature request |
 | Glossary | `glossary/glossary-template.md` | New product glossary setup |
-| Assumptions & Constraints Log | `assumptions-log/assumptions-log-template.md` | New product setup |
-| Stakeholder Register (shared pointer) | `stakeholder-register/stakeholder-register-shared-template.md` | New product setup |
-| Stakeholder Register (per product) | `stakeholder-register/stakeholder-register-product-template.md` | New product setup |
+| Assumptions & Constraints Log | `assumptions-log/assumptions-log-template.md` | New project setup |
+| Stakeholder Register | `stakeholder-register/stakeholder-register-template.md` | New project setup (single and multi-project) |
 | Project Charter | `project-charter/project-charter-template.md` | New project initiation |
 | PRD (client-facing) | `prd/prd-client-template.md` | Client-facing PRD creation |
 | SRS | `srs/srs-template.md` | SRS creation (greenfield + brownfield) |

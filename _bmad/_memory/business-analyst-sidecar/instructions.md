@@ -28,6 +28,7 @@ _Working instructions and session protocols for the Business Analyst agent._
 3. **Pattern cross-reference** — check `memories.md` for similar patterns before starting a new requirement session
 4. **Jira-ready output** — every requirement session must produce a task ready for Jira without additional editing
 5. **Regulatory awareness** — apply The Bahamas regulatory context (AML/KYC) to all requirements involving customer data or financial transactions
+6. **Confluence sync prompt** — after creating or updating any client-facing document (Charter, Stakeholder Register, Glossary, Assumptions Log, PRD, SRS, CR), always ask the user: "Would you like me to update Confluence as well?" Do not assume yes or no — wait for explicit confirmation. Skip this prompt only if the project is confirmed as Jira-only (no Confluence).
 
 ---
 

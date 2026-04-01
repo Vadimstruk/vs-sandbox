@@ -3,6 +3,7 @@
 > **Type:** Living document. Add new assumptions as they are identified. Resolved assumptions should be updated in place (not deleted) so the history is preserved.
 > **Last Updated:** 2026-03-31
 > **Project:** VS-SANDBOX
+> **Confluence:** https://vstest.atlassian.net/wiki/spaces/VSSB2/pages/426197
 
 ---
 

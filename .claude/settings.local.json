@@ -19,7 +19,14 @@
       "mcp__atlassian-confluence__conf_post",
       "mcp__atlassian-confluence__conf_get",
       "mcp__atlassian-jira__jira_post",
-      "mcp__atlassian-confluence__conf_put"
+      "mcp__atlassian-confluence__conf_put",
+      "Bash(mkdir -p docs/client/charter docs/client/prd docs/client/srs docs/client/change-requests docs/reference)",
+      "Bash(mv docs/client/vs-sandbox/charter/project-charter-v1.0.md docs/client/charter/)",
+      "Bash(mv docs/client/vs-sandbox/prd/prd-v1.0.md docs/client/prd/)",
+      "Bash(mv docs/client/vs-sandbox/srs/srs-v1.0.md docs/client/srs/)",
+      "Bash(mv docs/client/vs-sandbox/stakeholder-register.md docs/client/)",
+      "Bash(mv docs/templates/stakeholder-register/stakeholder-register-product-template.md docs/templates/stakeholder-register/stakeholder-register-template.md)",
+      "Bash(rm docs/templates/stakeholder-register/stakeholder-register-shared-template.md)"
     ]
   }
 }

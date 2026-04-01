@@ -16,6 +16,7 @@ date: 2026-03-31
 | **Date** | 2026-03-31 |
 | **Status** | Draft / Pending Approval |
 | **Author** | BA |
+| **Confluence** | https://vstest.atlassian.net/wiki/spaces/VSSB2/pages/950273 |
 
 ### Revision History
 
@@ -51,10 +52,10 @@ This SRS covers VS-SANDBOX only.
 
 | Document | Location |
 |---|---|
-| PRD | `docs/client/vs-sandbox/prd/prd-v1.0.md` |
-| Project Charter | `docs/client/vs-sandbox/charter/project-charter-v1.0.md` |
-| Glossary | `docs/client/shared/glossary.md` |
-| Assumptions Log | `docs/client/shared/assumptions-log.md` |
+| PRD | `docs/client/prd/prd-v1.0.md` |
+| Project Charter | `docs/client/charter/project-charter-v1.0.md` |
+| Glossary | `docs/client/glossary.md` |
+| Assumptions Log | `docs/client/assumptions-log.md` |
 
 ### 1.4 Intended Audience
 

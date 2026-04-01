@@ -3,6 +3,7 @@
 > **Type:** Living document — add new terms as they emerge. All project documents should use terms exactly as defined here. Never delete terms — mark as deprecated if no longer in use.
 > **Last Updated:** YYYY-MM-DD
 > **Domain:** [Domain description, e.g. Consumer lending — The Bahamas]
+> **Confluence:** [URL — add when Confluence page is created, leave blank for Jira-only projects]
 
 ---
 

@@ -6,6 +6,7 @@
 | **Date** | YYYY-MM-DD |
 | **Status** | Draft / Pending Approval |
 | **Author** | [Author Name / Role] |
+| **Confluence** | [URL — add when Confluence page is created, leave blank for Jira-only projects] |
 
 | Version | Date | Author | Summary |
 |---|---|---|---|

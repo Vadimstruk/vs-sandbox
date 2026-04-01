@@ -6,6 +6,7 @@
 | **Date** | 2026-03-31 |
 | **Status** | Draft / Pending Approval |
 | **Author** | BA |
+| **Confluence** | https://vstest.atlassian.net/wiki/spaces/VSSB2/pages/917505 |
 
 | Version | Date | Author | Summary |
 |---|---|---|---|

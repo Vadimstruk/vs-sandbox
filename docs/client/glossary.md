@@ -3,6 +3,7 @@
 > **Type:** Living document — add new terms as they emerge. All project documents should use terms exactly as defined here. Never delete terms — mark as deprecated if no longer in use.
 > **Last Updated:** 2026-03-31
 > **Domain:** HR and workforce staffing — UK
+> **Confluence:** https://vstest.atlassian.net/wiki/spaces/VSSB2/pages/1048577
 
 ---
 

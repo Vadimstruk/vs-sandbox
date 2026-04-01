@@ -1,9 +1,8 @@
 # Assumptions & Constraints Log
 
-> **Type:** Living document — shared across both projects. Add new assumptions as they are identified. Resolved assumptions should be updated in place (not deleted) so the history is preserved.
+> **Type:** Living document. Add new assumptions as they are identified. Resolved assumptions should be updated in place (not deleted) so the history is preserved.
 > **Last Updated:** YYYY-MM-DD
->
-> **Projects:** Assumptions marked **[EP]** apply to EasyPayday, **[IP]** to Investor Portal, **[Both]** to both.
+> **Confluence:** [URL — add when Confluence page is created, leave blank for Jira-only projects]
 
 ---
 
