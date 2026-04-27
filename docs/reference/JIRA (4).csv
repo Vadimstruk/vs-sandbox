@@ -1,0 +1,102 @@
+Issue Type,Issue key,Issue id,Summary,Status,Priority,Fix versions,Assignee,Assignee Id,Updated,Components,Custom field (Epic Name),Parent,Parent key,Parent summary,Sprint,Sprint,Description
+Task,STRMS-1436,120662,Manual repayments - Change the way how the Redemption fee is applied ,Done,Major,"5.3. - Update repayment distribution, Redemption fee update, Top-ups/Consolidations for the Customers/Agents",Vladyslav Vashchenko,712020:d6c9f346-a33d-40d4-a7ed-17b7e1b8f7b3,31/Mar/26 9:07 PM,,,98608,STRMS-32,Loans,STRMS Sprint 31,,"# Currently, the system applies a Redemption fee during Manual repayment in case when the cumpayment_actual is bigger than cumpayment_expected by more than 2 monthly repayments
+# The system shall not charge the Redemption fee if the Manual repayment amount is <= 2*Net Monthly repayment within 1 month  
+# If the Value date of a newly created Manual repayment transaction is before the Value date of the existing transaction within the same loan, the system shall redistribute the money of the existing transactions accordingly
+
+*Example 1:* 
+
+# Net Montly repayment = $200
+# cumpayment_expected = $10,000
+# cumpayment_actual = $11,500
+# Value date of the Manual repayment (Transaction A) = 07.01.2025
+# Manual repayment amount = $270
+# Other repayments in January 2025: 
+## Transaction B = $50 (03.01.2025)
+## Transaction C = $100 (05.01.2025)
+# Redemption fee is calculated from the $20 ($50 + $100 + $270 - 2*$200 = $420 - $400 = $20)
+
+*Example 2:*
+
+# Net Montly repayment = $200
+# cumpayment_expected = $10,000
+# cumpayment_actual = $11,500
+# Value date of the Manual repayment (Transaction A) = 07.01.2025
+# Manual repayment amount = $270
+# Other repayments in January 2025: 
+## Transaction B = $50 (03.01.2025)
+## Transaction C = $100 (16.01.2025)
+# In this scenario, the Value date of a new transaction is before the Value date of the existing transaction ($100 (16.01.2025)). So, the system shall redistribute the money from every transaction that goes after 07.01.2025:
+## Redemption fee for Transaction A: $50 + $270 = $320. Since $320 < 2*Net monthly repayment ($400), on 07.01.2025 the limit wasn’t exceeded, and therefore the Redemption fee = 0
+## Redemption fee for Transaction C: $320 + $100 = $420. Since $420 > 2*Net monthly repayment ($400), on 16.01.2025 the limit was exceeded by $20, and the Redemption fee will be calculated out of this $20. 
+
+
+
+*IMPORTANT!!!* 
+
+There could be a case when the Manual repayment transaction will be placed before the Batch file repayment transaction (Transaction C is a Batch file repayment). In this case, the system shall not apply the Redemption fee to the Batch file repayment transaction since it is not allowed by the business rules. 
+
+In this scenario, the system shall just redistribute the money from the Batch file repayment transaction among Principal/Interest/Fees. 
+
+*Git:* 
+[https://github.com/EasyPayDay/easyterms-docs/commit/51d6a19b5eb32c904b8cf8025680f01fb13842f1|https://github.com/EasyPayDay/easyterms-docs/commit/51d6a19b5eb32c904b8cf8025680f01fb13842f1|smart-link] "
+Task,STRMS-1529,124118,"Sugar CRM - Add ""Perks balance"" field to a Contact/Customer entity",Done,Medium,"5.3. - Update repayment distribution, Redemption fee update, Top-ups/Consolidations for the Customers/Agents",Ostap Dribniuk,6238477c761efb0069cc2c29,26/Mar/26 11:56 AM,CRM integration,,,,,STRMS Sprint 31,,"# Add ""Perks balance"" field to a Contact/Customer entity
+# Update this field value once the Perks balance changes for a specific Customer in the EPD platform"
+Task,STRMS-1530,124120,Top-ups/Consolidation - Allow Customers/Agents do the Top-ups/Consolidations,Done,Major,"5.3. - Update repayment distribution, Redemption fee update, Top-ups/Consolidations for the Customers/Agents",Vladyslav Vashchenko,712020:d6c9f346-a33d-40d4-a7ed-17b7e1b8f7b3,25/Mar/26 11:48 AM,Loans,,98608,STRMS-32,Loans,STRMS Sprint 31,,"# Add the ability for the Customer to Top-up/Consolidate his/her own loans
+# Add the ability for the Agent to Top-up/Consolidate the loans of the Customers who are assigned to him/her
+# When the Customer/Agent Tops-up a loan the system shall set the Disbursement date to the Current date
+# The system shall not display the “Disbursement date“ and “First instalment date“ fields on the “Top-up“ pop-up to the Customer/Agent.
+# The system shall display only Active loans to the Agent
+
+*Git:* 
+[https://github.com/EasyPayDay/easyterms-docs/blob/feature-top-up-and-consolidation-for-customers-and-agents/docs/business-requirements/business-requirement-2026-02-02.md|https://github.com/EasyPayDay/easyterms-docs/blob/feature-top-up-and-consolidation-for-customers-and-agents/docs/business-requirements/business-requirement-2026-02-02.md] "
+Task,STRMS-1547,125012,Add transaction before the Lock date - Improve the error message text,Done,Minor,"5.3. - Update repayment distribution, Redemption fee update, Top-ups/Consolidations for the Customers/Agents",Vladyslav Vashchenko,712020:d6c9f346-a33d-40d4-a7ed-17b7e1b8f7b3,25/Mar/26 11:48 AM,,,,,,STRMS Sprint 31,,"# When the user tries to create a transaction with a value date that is before the Lock date (system.settings.archivationDate), the system shall display the following error message: 
+*""You cannot create transaction before archivation date""*"
+Task,STRMS-1555,125469,"Employer droplist - Set the ""My employer is not on the list"" option as a first option in the list",Done,Minor,"5.3. - Update repayment distribution, Redemption fee update, Top-ups/Consolidations for the Customers/Agents",Vladyslav Vashchenko,712020:d6c9f346-a33d-40d4-a7ed-17b7e1b8f7b3,31/Mar/26 9:08 PM,,,,,,STRMS Sprint 31,,
+Task,STRMS-1573,128358,Refactoring - Investigate the Effort needed for the Documents service refactoring,Done,Major,"5.3. - Update repayment distribution, Redemption fee update, Top-ups/Consolidations for the Customers/Agents",Ostap Dribniuk,6238477c761efb0069cc2c29,25/Mar/26 11:48 AM,,,,,,STRMS Sprint 30,STRMS Sprint 31,
+Task,STRMS-1577,128534,Top-up - Fix first payment date issue when the upcoming payment was made in the old loan,Done,Medium,"5.3. - Update repayment distribution, Redemption fee update, Top-ups/Consolidations for the Customers/Agents",Ostap Dribniuk,6238477c761efb0069cc2c29,25/Mar/26 11:48 AM,,,,,,STRMS Sprint 31,,"h3. Summary
+
+The issue involves a problem with the first payment date for a new loan when a customer tops up their loan after making an early payment on the old loan. The new loan's first payment date is incorrectly set to the calendar due date, causing it to appear in arrears.
+
+h3. Context
+
+* *Feature:* Loan Top-Up (Payday). See [business rules documentation|docs/features/easypayday/loan-management/loan-management/05-business-rules.md].
+* *Current behaviour:* The system uses the upcoming payment date based on the calendar for calculations. The required behaviour is to use the first unpaid instalment date instead, with a safeguard for the disbursement date.
+
+h3. Acceptance criteria
+
+* The system must calculate the first instalment date using the first unpaid instalment from the existing loan’s payment schedule, based on the current principal balance at top-up.
+* When creating the top-up application, the new loan’s first payment date must follow the same logic of using the first unpaid instalment.
+* If the first unpaid instalment date is before the top-up disbursement date, the system should use the first schedule date on or after the disbursement date.
+* The first instalment date must remain read-only in the top-up UI, with no new user inputs allowed.
+* Existing top-up eligibility, validation, and disbursement-date rules must remain unchanged.
+
+h3. Other information
+
+*Git:*   
+[https://github.com/EasyPayDay/easyterms-docs/commit/2762ea046ecc26dee86bef213114916c53579fd7|https://github.com/EasyPayDay/easyterms-docs/commit/2762ea046ecc26dee86bef213114916c53579fd7|smart-link]"
+Task,STRMS-1584,129163,Change the money distribution for the Manual and Batch repayments: Fees -> Interest -> Principal,Done,Critical,"5.3. - Update repayment distribution, Redemption fee update, Top-ups/Consolidations for the Customers/Agents",Vladyslav Vashchenko,712020:d6c9f346-a33d-40d4-a7ed-17b7e1b8f7b3,31/Mar/26 9:07 PM,,,,,,STRMS Sprint 31,,"*Git:* 
+[https://github.com/EasyPayDay/easyterms-docs/commit/0619c3746c5b6cd916e64dbd443e48a9e89a211c#diff-3bd794b9241826095625f62888083b21fdcea535860b202cae16abfd1e7156ac|https://github.com/EasyPayDay/easyterms-docs/commit/0619c3746c5b6cd916e64dbd443e48a9e89a211c#diff-3bd794b9241826095625f62888083b21fdcea535860b202cae16abfd1e7156ac|smart-link] "
+Task,STRMS-1587,129298,Make Top-up loan application editable on Step 5 (same as pop-up),Done,Major,"5.3. - Update repayment distribution, Redemption fee update, Top-ups/Consolidations for the Customers/Agents",Ostap Dribniuk,6238477c761efb0069cc2c29,25/Mar/26 11:48 AM,,,,,,STRMS Sprint 31,,"*Git:* 
+[https://github.com/EasyPayDay/easyterms-docs/commit/f534f71e4401c536eec49e328bacd76d0b83aa21#diff-6b4ba70af83da0bdde01f1609e876115f1f32b12a613b9bc3084515fcfc84525|https://github.com/EasyPayDay/easyterms-docs/commit/f534f71e4401c536eec49e328bacd76d0b83aa21#diff-6b4ba70af83da0bdde01f1609e876115f1f32b12a613b9bc3084515fcfc84525|smart-link] "
+Task,STRMS-1588,129543,"Payoff statement tab - Display the ""No,thanks"" button if the Consolidation/Top-up is unavailable ",Done,Critical,"5.3. - Update repayment distribution, Redemption fee update, Top-ups/Consolidations for the Customers/Agents",Ostap Dribniuk,6238477c761efb0069cc2c29,25/Mar/26 11:48 AM,,,,,,STRMS Sprint 31,,"# If the Consolidation and the top-up is unavailable on the Payoff statement tab, the system shall display both Consolidation and a Top-up sections with text “Consolidation/Top-up is unavailable“ AND the sytem shall display the “No, thanks“ button
+# The system shall display the following error message in case the Net monthly income is too low to get a Consolidation or a top-up: _“Net monthly income is below the minimum required for consolidation or top-up”_
+
+!image-20260227-111017.png|width=671,alt=""image-20260227-111017.png""!"
+Task,STRMS-1589,130373,Dev DB update - Copy the DB from Prod to Dev,Done,Major,"5.3. - Update repayment distribution, Redemption fee update, Top-ups/Consolidations for the Customers/Agents",Vladyslav Vashchenko,712020:d6c9f346-a33d-40d4-a7ed-17b7e1b8f7b3,31/Mar/26 9:09 PM,,,,,,STRMS Sprint 31,,"# Copy the DB from Prod to Dev
+# Ignore files (make a single set of files for all Loans)
+# Anonymize the sensitive data (First/Last/Middle name, phone number)"
+Task,STRMS-1596,131074,HOTFIX - Remove the Redemption fee line for the Customer,Done,Major,"5.3. - Update repayment distribution, Redemption fee update, Top-ups/Consolidations for the Customers/Agents",Vladyslav Vashchenko,712020:d6c9f346-a33d-40d4-a7ed-17b7e1b8f7b3,25/Mar/26 11:49 AM,,,,,,STRMS Sprint 31,,"# Remove the Redemption fee line for the Customer
+# At the ""Total excluding redemption fee"" line, display the “For your payoff balance, see the Payoff statement tab” instead of the amount."
+Task,STRMS-1607,131937,Top-up - Change the way how the First instalment date is set,Done,Major,"5.3. - Update repayment distribution, Redemption fee update, Top-ups/Consolidations for the Customers/Agents",Vladyslav Vashchenko,712020:d6c9f346-a33d-40d4-a7ed-17b7e1b8f7b3,31/Mar/26 9:12 PM,,,,,,STRMS Sprint 31,,"# When the Top-up is created, the next payment date of the new loan should not be more than 1 month after the disbursement date
+
+Example 1: 
+
+# The repayment date of the old loan is the 25th day of the month
+# The user made a repayment on 15.03.2026
+# When the top-up is made (on 20.03.2026), the first payment date = 25.04.2026
+
+Example 2:
+
+# The repayment date of the old loan is the 25th day of the month
+# The user made an extra repayment upfront that covered all repayments till 25.01.2028
+# When the top-up is made (on 20.03.2026), the first payment date = 25.04.2026"

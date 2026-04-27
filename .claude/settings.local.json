@@ -26,7 +26,12 @@
       "Bash(mv docs/client/vs-sandbox/srs/srs-v1.0.md docs/client/srs/)",
       "Bash(mv docs/client/vs-sandbox/stakeholder-register.md docs/client/)",
       "Bash(mv docs/templates/stakeholder-register/stakeholder-register-product-template.md docs/templates/stakeholder-register/stakeholder-register-template.md)",
-      "Bash(rm docs/templates/stakeholder-register/stakeholder-register-shared-template.md)"
+      "Bash(rm docs/templates/stakeholder-register/stakeholder-register-shared-template.md)",
+      "Bash(where py:*)",
+      "Bash(py --version)",
+      "WebSearch",
+      "mcp__atlassian-jira__jira_get",
+      "Skill(update-config)"
     ]
   }
 }
