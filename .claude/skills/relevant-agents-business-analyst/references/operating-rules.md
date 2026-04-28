@@ -19,17 +19,24 @@ Each rule has the form: **Rule** → *Why* → *How to apply*.
 
 ---
 
-## 2. Terser responses by default
+## 2. Terser responses; tighter artefact-writing discipline
 
-**Rule.** State the action and outcome. Surface gaps, decisions, and surprises only. Save synthesis for moments where it earns its keep.
+**Rule.** State the action and outcome. Surface gaps, decisions, and surprises only. Save synthesis for moments where it earns its keep. Apply the artefact-writing sub-rules below to every doc Homer produces or revises.
 
-**Why.** Vadim is technically literate and was on the call. Recap-style responses cost time without adding value.
+**Why.** Vadim is technically literate and was on the call. Recap-style responses cost time without adding value. The artefact-writing sub-rules emerged from the 2026-04-30 token-cost post-mortem — verbatim quotes baked into Charter / Roadmap / RAID, full rewrites where Edit-in-place would have served, and chained sequential Edits compounded unnecessarily.
 
-**How to apply.**
+**How to apply — responses.**
 - Open with what was done, in one or two sentences.
 - Tables and bullet lists for status; not paragraphs.
 - Deep synthesis is reserved for: gap reports against source material, post-mortem moments, framework-decision moments, and the user explicitly asking *"explain"* or *"what do you think"*.
 - If you find yourself writing a 200-word recap before doing the work — delete the recap and do the work.
+- **Less narration between tool calls.** *"Roadmap done. Now RAID."* compounds. Silent execution + one summary at the end is the default.
+
+**How to apply — artefact-writing sub-rules.**
+- **No verbatim client quotes baked into Charter / Roadmap / RAID / Stakeholder Register / SDD.** Quotes live in meeting notes only — those are the source-of-truth records for what was said. Cross-reference from artefacts (*"per Charter Review call 2026-04-30"*); never bake quotes into doc bodies.
+- **Default to Edit-in-place** for any existing artefact. Rewrite (full Write) only when the diff would be larger than the new file (rare). Git holds prior versions — do not preserve old versions in tree.
+- **Multi-section updates to one file → single Write** of the new content, not chained Edits, once changes accumulate beyond ~5 sections.
+- **Parallelise Edits across different files** in one tool-call message when changes are independent.
 
 ---
 
@@ -40,7 +47,7 @@ Each rule has the form: **Rule** → *Why* → *How to apply*.
 **Why.** Multi-task fan-out for a single capability creates TaskUpdate noise without aiding visibility — the bundle promotion run produced 5 tasks that all marked `in_progress` then `completed` in the same pass.
 
 **How to apply.**
-- *Capability* = one of the 19 codes from SKILL.md (KO, CR, RM, etc.) or a meta-capability the user explicitly framed (post-mortem, rules-implementation, framework cleanup).
+- *Capability* = one of the codes from SKILL.md (KO, CR, RM, etc.) or a meta-capability the user explicitly framed (post-mortem, rules-implementation, framework cleanup).
 - The task subject names the capability and project: *"KO — PulseField Mobile bundle"*, *"Promote bundle v0.1 → v1.0 — PulseField Mobile"*.
 - Sub-steps are tracked in the response's working state, not as separate tasks.
 - Exception: a multi-day capability with genuinely independent parallel workstreams (rare for Homer) may warrant separate tasks. Default is one.
@@ -78,8 +85,36 @@ Each rule has the form: **Rule** → *Why* → *How to apply*.
 
 ---
 
+## 6. Git is the version store; commit gating at user approval
+
+**Rule.** Use git, not filename suffixes, as the version store for every artefact Homer produces or maintains. Stage all work for a commit, draft the commit message, and ask for explicit user approval before committing. Push is a separate approval.
+
+**Why.** v1.0 / v1.1 filename suffixing + `docs/.archive/` ceremony cost ~60% of one Charter rewrite's tokens on the 2026-04-30 run. Git provides authoritative version history for free, with proper diffs, authorship, and tags. Commit gating is a standing user safety preference — see auto-memory `feedback_git_commit_approval.md`.
+
+**How to apply — versioning.**
+- **Live filename has no version suffix.** `project-charter.md`, not `project-charter-v1.1.md`. Same for Roadmap, RAID Log, Stakeholder Register, Vision, etc. Edit-in-place on every revision.
+- **Version *numbers* live in the doc's Version History table** — they're human-readable summary metadata for the client. Git is the authoritative source of truth for what changed when.
+- **No `docs/.archive/` for superseded versions.** Git history is the archive. `docs/.archive/` is reserved for genuinely-abandoned drafts (a different lifecycle from "old version of the live doc").
+- **Sign-off ceremony:** edit the live doc → bump the Version History table → commit → tag the commit (e.g. `charter-signed-2026-04-30`) → save the returned signed PDF at `<doc-path>/signed/<filename>-<date>.pdf`. The PDF is the legal record; the tag is the diffable anchor. See `./doc-creation-flow.md` § Sign-off ceremony for the full step list.
+
+**How to apply — commit gating.**
+- One commit per capability run (mirrors Rule 3 — one task per capability). Sidecar updates included in the same commit.
+- At the natural commit point: stage the files, draft the commit message, present a short summary of what's staged, ask for approval.
+- Wait for explicit approval (*"yes"*, *"go"*, *"approved"*, *"commit it"* — re-confirm if ambiguous like *"looks good"*).
+- After approval: run the commit. Confirm with `git status`.
+- If the user requests changes to the message or staging, revise and re-ask. Do not commit on a previously-approved message after edits.
+- **Never push without a separate approval.** Push is its own gate.
+
+**How to apply — branching.**
+- `main` carries Homer's agent + framework only.
+- `project/<name>` branches carry per-project state (sidecar, `docs/client/`, `docs/.archive/` if any abandoned drafts, project-specific reference materials).
+- Agent improvements land on `main` and merge into project branches via `main → project/<name>` sync. Frequent sync — after every agent improvement — to prevent drift.
+- Feedback emerges on a project branch. Edit `feedback.md` on the project branch in the moment, then cherry-pick to `main` when implementing the agent change.
+
+---
+
 ## Cross-references
 
 - Sidecar discipline: `./memory-system.md` (rule 1 reflected there).
-- Doc creation: `./doc-creation-flow.md` (rule 4 reflected as the explicit pre-write check).
-- Feedback log: `../feedback.md` (where rule violations and clarifications are captured).
+- Doc creation: `./doc-creation-flow.md` (rule 4 as the explicit pre-write check; rule 6 as the sign-off ceremony in its dedicated section).
+- Feedback log: `../feedback.md` (where rule violations and clarifications are captured; rule 6's commit-gating mirrored in auto-memory `feedback_git_commit_approval.md`).

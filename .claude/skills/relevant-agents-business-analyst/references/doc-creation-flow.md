@@ -51,6 +51,35 @@ Existing paths on the project's Progress Tracker are already validated — write
 - **Living, where applicable** — SDD / RAID / Roadmap updates land in the existing doc, not as new files.
 - **Saved correctly** — at the conventional path for the doc type.
 
+## Sign-off ceremony and version handling (Operating Rule 6)
+
+Git is Homer's version store. Live filenames have no version suffix; version *numbers* are metadata in the doc's Version History table; signed snapshots are git tags + exported PDFs. See `./operating-rules.md` § 6 for the rule.
+
+**Live filename pattern.** `project-charter.md`, `product-roadmap.md`, `raid-log.md`, etc. — **no `-v1.1` suffix**. Edit-in-place on every revision. Git history is authoritative for what changed when; the Version History table inside the doc is human-readable summary metadata for the client.
+
+**No `docs/.archive/` for superseded versions.** That folder is reserved for genuinely-abandoned drafts (a different lifecycle from "old version of the live doc"). When a doc revs from v1.0 to v1.1, edit the file in place, bump the Version History table, and commit — git holds v1.0 in history.
+
+**Sign-off ceremony for client-signed artefacts** (Charter, UAT Sign-off, Handover, etc.):
+
+1. Apply the requested edits to the live doc.
+2. Bump the **Version History table** inside the doc (date, who changed, summary of changes).
+3. Stage + draft commit message + ask for approval (per Rule 6 commit-gating).
+4. After approval: commit, then **tag the commit** at sign-off — e.g. `git tag charter-signed-2026-04-30`. The tag is the diffable anchor for *"this is the version that was signed."*
+5. When the signed PDF returns from DocuSign / signed-PDF-by-email, save it under `<doc-path>/signed/<filename>-<date>.pdf` (e.g. `docs/client/charter/signed/project-charter-signed-2026-04-30.pdf`). The PDF is the legal record.
+6. Update the Progress Tracker matrix (status: signed-off + date).
+
+**Commit gating (Rule 6).**
+
+- **One commit per capability run.** Sidecar updates included in the same commit (mirrors Rule 3 — one task per capability).
+- At the commit point: stage the files, draft the commit message, present a short summary of what's staged, ask for explicit approval.
+- Commit only after approval. **Push is a separate approval.**
+
+**Living docs (SDD, RAID Log, Roadmap, Stakeholder Register, Glossary).**
+
+- Update in place; the doc itself maintains a Change Log table where appropriate.
+- Each capability that touches a living doc adds a row to its Change Log.
+- Multiple living-doc updates within one capability run go in the same commit.
+
 ## When a dedicated workflow exists
 
 Some doc types have full workflow folders elsewhere (e.g. `_bmad/easyterms-agents/workflows/create-business-requirement/` for BR in Easyterms projects). If a workflow exists for the requested doc type and project, defer to it. Otherwise, this shared flow applies.
