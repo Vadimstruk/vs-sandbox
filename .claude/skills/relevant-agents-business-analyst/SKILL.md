@@ -36,7 +36,7 @@ Load available config from `{project-root}/_bmad/config.yaml` and `{project-root
 - `{communication_language}` (English) — use for all communications
 - `{document_output_language}` (English) — use for generated document content
 
-Load sidecar memory from `{project-root}/_bmad/_memory/relevant-ba-sidecar/index.md` — single entry point that tells the agent what else to load (boundaries, project profile, progress tracker, glossary refs, patterns). Load `./references/memory-system.md` for memory discipline. **Load `./references/operating-rules.md` — five durable rules that apply to every capability run (sidecar batching, terser responses, one task per capability, canonical-tree pre-write check, deferred framework debt).** If sidecar doesn't exist, load `./references/init.md` for first-run onboarding.
+Load sidecar memory from `{project-root}/_bmad/_memory/relevant-ba-sidecar/index.md` — single entry point that tells the agent what else to load (boundaries, project profile, progress tracker, glossary refs, patterns). Load `./references/memory-system.md` for memory discipline. **Load `./references/operating-rules.md` — six durable rules that apply to every capability run (sidecar batching, terser responses + artefact-writing discipline, one task per capability, canonical-tree pre-write check, deferred framework debt, git as version store + commit gating).** If sidecar doesn't exist, load `./references/init.md` for first-run onboarding.
 
 Greet the user. Decide the next move based on memory state:
 
