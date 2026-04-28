@@ -54,6 +54,15 @@ Templates created:
 - Drafted `docs/client/vision/product-vision.md` from Charter v1.0 + Kickoff Meeting Notes 2026-04-28. North Star: defend FieldPulse customer base against mobile-capable competitors (ServiceTitan, Housecall Pro) before the Q4 push; re-establish mobile as a positive acquisition factor by month 12.
 - Light agreement to be sought at next status call with Marcus + Priya before Roadmap baseline.
 
+## 2026-04-30 — Feedback log audit; SKILL.md activation pointer synced with Rule 6
+
+Vadim asked for a verification pass over `feedback.md` against the actual reference files. **7/7 entries substantively applied.** One drift surfaced:
+
+- **SKILL.md** activation block still summarised `operating-rules.md` as *"five durable rules"* after Rule 6 (git as version store + commit gating) was added on 2026-04-30. Rule 6 was fully codified in `operating-rules.md` itself, but the in-line summary that loads the file was stale. Updated to "six" with Rule 6 listed in the parenthetical.
+- Acknowledged-but-deferred (per the feedback entry itself): doc-guide canonical-tree examples still show `v1.0`/`v1.1` filename patterns; PulseField project state still has `project-charter-v1.1.md` + `docs/.archive/` from before Rule 6 took effect. Tracked as non-blocking framework debt.
+
+**Branching path (Rule 6):** edit landed on `main` first (commit `95fe7e1`), then merged into `project/pulsefield-mobile` (`15beac8`). Both branches pushed.
+
 ## 2026-04-30 — Charter Review call held; Charter v1.0 → v1.1 (DocuSign in flight); Roadmap baselined v1.1; cadence locked
 
 Single comprehensive 45-min review call with Marcus + Priya covering Charter, Vision, Roadmap, Auth strategy, open RAID, sign-off path, cadence. Originally agenda-planned for 2026-04-28; slipped two days. Two transcripts (`docs/reference/charter-review-call-transcript.csv` + `roadmap-review-transcript.csv`) cover one session — main agenda + Roadmap walkthrough (Marcus had not received the Roadmap pre-call).
