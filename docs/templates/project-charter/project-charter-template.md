@@ -60,15 +60,20 @@
 
 ---
 
-## 5. Assumptions
+## 5. Key Risks & Assumptions
 
-> See `docs/client/shared/assumptions-log.md` for the full assumptions register.
+> See `docs/client/shared/raid-log.md` for the full RAID Log (Risks, Assumptions, Issues, Dependencies). This section captures only the headline items at project initiation.
 
 Key assumptions at project initiation:
 
 - [Key assumption 1]
 - [Key assumption 2]
 - [Key assumption 3]
+
+Key risks at project initiation:
+
+- [Key risk 1]
+- [Key risk 2]
 
 ---
 

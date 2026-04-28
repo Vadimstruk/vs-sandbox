@@ -60,7 +60,7 @@ This SRS covers [Product Name] only. [Note any related products with separate SR
 | PRD | `docs/client/[product]/prd/prd-v1.0.md` |
 | Project Charter | `docs/client/[product]/charter/project-charter-v1.0.md` |
 | Glossary | `docs/client/shared/glossary.md` |
-| Assumptions Log | `docs/client/shared/assumptions-log.md` |
+| RAID Log | `docs/client/shared/raid-log.md` |
 
 ### 1.4 Intended Audience
 

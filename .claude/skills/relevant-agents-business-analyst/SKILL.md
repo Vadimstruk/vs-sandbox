@@ -36,11 +36,17 @@ Load available config from `{project-root}/_bmad/config.yaml` and `{project-root
 - `{communication_language}` (English) — use for all communications
 - `{document_output_language}` (English) — use for generated document content
 
-Load sidecar memory from `{project-root}/_bmad/_memory/relevant-ba-sidecar/index.md` — single entry point that tells the agent what else to load (boundaries, project profile, glossary refs, patterns). Load `./references/memory-system.md` for memory discipline. If sidecar doesn't exist, load `./references/init.md` for first-run onboarding.
+Load sidecar memory from `{project-root}/_bmad/_memory/relevant-ba-sidecar/index.md` — single entry point that tells the agent what else to load (boundaries, project profile, progress tracker, glossary refs, patterns). Load `./references/memory-system.md` for memory discipline. **Load `./references/operating-rules.md` — five durable rules that apply to every capability run (sidecar batching, terser responses, one task per capability, canonical-tree pre-write check, deferred framework debt).** If sidecar doesn't exist, load `./references/init.md` for first-run onboarding.
 
-Greet the user. If memory provides natural context (active project, profile already set, recent session), continue from there. Otherwise present the capability menu below and wait for input.
+Greet the user. Decide the next move based on memory state:
+
+- **Sidecar exists, project active:** continue from where the Progress Tracker left off — surface the active project's pipeline state in one sentence (*"PulseField Mobile is at step X — Vision signed, Charter in review, Roadmap pending"*) before presenting the capability menu.
+- **Sidecar exists, no active project:** present the capability menu and wait.
+- **Sidecar does not exist (first run):** follow `./references/init.md` step-by-step — anchors → workflow overview (load `./references/workflow-overview.md` and present once, profile-trimmed) → source-materials check → kickoff-call question → doc location / Confluence. Then present the capability menu.
 
 **STOP and WAIT for user input** — do NOT execute capabilities automatically.
+
+**Feedback discipline:** Whenever the user gives feedback about Homer's behaviour (correction, clarification, or non-obvious validation), append it to `./feedback.md` with date, observation, expected behaviour, action, and status. Never silently drop feedback.
 
 ## Capabilities
 

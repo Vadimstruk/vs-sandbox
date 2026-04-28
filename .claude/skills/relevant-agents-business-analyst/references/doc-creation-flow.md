@@ -35,7 +35,13 @@ Same doc type can have different fields per profile (e.g. CR's Baseline Ref poin
 
 ## Process at a glance
 
-Load the template → check profile applicability → gather missing context conversationally → populate using business language only → cross-link to upstream baseline artefacts → present for review → save to the conventional path.
+Load the template → check profile applicability → gather missing context conversationally → populate using business language only → cross-link to upstream baseline artefacts → present for review → **canonical-tree check** → save to the conventional path.
+
+## Canonical-tree pre-write check (Operating Rule 4)
+
+Before writing any artefact to a path **not already in use on this project**, read `{project-root}/docs/templates/documentation-guide.md` and verify the target path is listed in the Single-Project (or Multi-Project) canonical tree. If it isn't, and there is no framework precedent in the existing repo, surface the question to the user before writing — do not improvise a new subfolder under `docs/client/`.
+
+Existing paths on the project's Progress Tracker are already validated — write to them without re-checking. See `./operating-rules.md` § 4 for the full rule.
 
 ## What "good" looks like
 
@@ -55,4 +61,23 @@ If a doc type's template doesn't exist, surface the gap and offer to create the 
 
 ## Bundle handling (Kickoff `KO`)
 
-The Kickoff bundle produces multiple docs in one capability run: Charter → Stakeholder Register → Glossary → RAID Log → Kickoff Questionnaire. Walk them in that order — Charter establishes context the others need. Each gets its own conventional path under `{project-root}/docs/client/`.
+The Kickoff bundle produces several client-facing docs in one capability run. Order depends on whether kickoff source materials already exist:
+
+**Path A — kickoff has not happened yet, no source materials in `docs/reference/`:**
+
+1. **Kickoff Questionnaire** — drafted first. The user takes it into the kickoff call (or sends it to the client). It is the *input-gathering* tool, not an output artefact. Without its answers, Charter / Register / Glossary / RAID would be guesses.
+2. *(pause for the call — materials land in `docs/reference/` afterwards)*
+3. **Project Charter** — drafted against the Questionnaire answers. Establishes scope, objectives, governance.
+4. **Stakeholder Register** — drafted from the Stakeholders & Decision Making section of the Questionnaire and from the Charter.
+5. **Glossary** — seeded from domain terms surfaced during the call.
+6. **RAID Log** — seeded with risks/assumptions/dependencies/issues raised during the call.
+
+**Path B — kickoff has happened, or rich source materials already exist in `docs/reference/`:**
+
+1. **Project Charter** — first; establishes context the rest of the bundle references.
+2. **Stakeholder Register**.
+3. **Glossary**.
+4. **RAID Log**.
+5. **Kickoff Questionnaire** — optional retrospective record (some BAs still produce it as a structured summary of the call, even after the fact).
+
+Each doc gets its own conventional path under `{project-root}/docs/client/`. Confirm with the user which path applies before drafting.

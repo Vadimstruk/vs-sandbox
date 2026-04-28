@@ -76,6 +76,9 @@ docs/
 │   ├── stakeholder-register.md
 │   ├── charter/
 │   │   └── project-charter-v1.0.md
+│   ├── meetings/                   ← Kickoff Questionnaires + Meeting Agendas (lifecycle: pre-call form → post-call notes)
+│   │   ├── kickoff-questionnaire-YYYY-MM-DD.md   ← rename to kickoff-meeting-YYYY-MM-DD.md after the call (with answers in place)
+│   │   └── meeting-YYYY-MM-DD.md                 ← starts as agenda; becomes notes after the call (or rename: meeting-agenda-… → meeting-notes-…)
 │   ├── vision/                     ← Agile only
 │   │   └── product-vision.md
 │   ├── roadmap/                    ← Agile only (living)
@@ -170,7 +173,10 @@ docs/
 │   ├── shared/                     ← shared across all products
 │   │   ├── glossary.md
 │   │   ├── raid-log.md
-│   │   └── stakeholder-register.md
+│   │   ├── stakeholder-register.md
+│   │   └── meetings/               ← Kickoff Questionnaires + Meeting Agendas (engagement-wide; lifecycle-renamed post-call)
+│   │       ├── kickoff-questionnaire-YYYY-MM-DD.md
+│   │       └── meeting-YYYY-MM-DD.md
 │   │
 │   ├── project-1/                  ← Product 1 (per-product, methodology-driven)
 │   │   ├── charter/
@@ -640,12 +646,21 @@ Quick Spec / Quick Dev bypasses the CR client sign-off gate (and, in Waterfall, 
 
 ### Client Communication (`docs/templates/client-communication/`)
 
+> **Output location for completed Client-Communication artefacts.** Templates live in `docs/templates/client-communication/`. *Filled-in* questionnaires and agendas live in **`docs/client/meetings/`** for single-project setups, or **`docs/client/shared/meetings/`** for multi-project setups.
+>
+> **Lifecycle naming convention.** A single file evolves through its lifecycle rather than two files being maintained in parallel:
+> - Pre-call: `kickoff-questionnaire-YYYY-MM-DD.md` (the questions to ask). Post-call: rename to `kickoff-meeting-YYYY-MM-DD.md` (the same file, with answers in place).
+> - Pre-call: `meeting-agenda-YYYY-MM-DD.md` (the agenda). Post-call: rename to `meeting-notes-YYYY-MM-DD.md` (the same file, with discussion + decisions filled in). A combined neutral form `meeting-YYYY-MM-DD.md` is also acceptable when the same file always carries both.
+>
+> The rename signals the lifecycle stage; the YYYY-MM-DD date stays stable so a meeting's pre- and post-call forms link to the same identifier.
+
 #### Kickoff Questionnaire (`kickoff-questionnaire-template.md`)
 - **Purpose:** Structured set of questions for the BA to ask at project kickoff or client onboarding. Covers business context, stakeholders, domain and regulatory requirements, integrations, scope, existing documentation, communication preferences, and UAT. Answers feed directly into the Glossary, RAID Log, Stakeholder Register, and Project Charter.
 - **When to use:** At the start of every new project or when onboarding a new client.
 - **Owner:** BA
 - **Profiles:** All
 - **Output feeds:** Glossary, RAID Log, Stakeholder Register, Project Charter
+- **Output location:** `docs/client/meetings/kickoff-questionnaire-YYYY-MM-DD.md` (single-project) or `docs/client/shared/meetings/…` (multi-project). Renamed to `kickoff-meeting-YYYY-MM-DD.md` once the call is complete and answers are filled in.
 
 #### Meeting Agenda (`meeting-agenda-template.md`)
 - **Purpose:** Standard structure for recurring client calls. Covers previous action items, dev status, open CRs, open questions, open RAID items needing confirmation, upcoming milestones, new client requests, decisions log, and action items. The Decisions Made section is designed to be emailed to the client after every call as the written record.
@@ -653,6 +668,7 @@ Quick Spec / Quick Dev bypasses the CR client sign-off gate (and, in Waterfall, 
 - **Owner:** BA
 - **Profiles:** All
 - **Output feeds:** Open CRs updated, RAID Log updated, follow-up email to client
+- **Output location:** `docs/client/meetings/meeting-agenda-YYYY-MM-DD.md` (single-project) or `docs/client/shared/meetings/…` (multi-project). Renamed to `meeting-notes-YYYY-MM-DD.md` after the call (or use the combined form `meeting-YYYY-MM-DD.md` from the start).
 
 ---
 
@@ -869,7 +885,7 @@ Quick Spec / Quick Dev bypasses the CR client sign-off gate (and, in Waterfall, 
 | Stakeholder Register | `stakeholder-register/stakeholder-register-template.md` | New project setup (single and multi-project) | All |
 | Project Charter | `project-charter/project-charter-template.md` | New project initiation | All |
 | Product Vision | `vision/product-vision-template.md` | Agile project setup | Agile |
-| Product Roadmap | `roadmap/product-roadmap-template.md` | Agile project setup + ongoing | Agile |
+| Product Roadmap | `roadmap/roadmap-template.md` | Agile project setup + ongoing | Agile |
 | Personas | `personas/personas-template.md` | When user profiles add value | Agile (recommended) |
 | Journey Maps | `journey-maps/journey-maps-template.md` | When the user journey is non-trivial | Agile (recommended) |
 | PRD (client-facing) | `prd/prd-client-template.md` | Client-facing PRD creation | All |

@@ -54,13 +54,15 @@
 
 ---
 
-## 5. Open Assumptions Requiring Confirmation
+## 5. Open RAID Items Requiring Confirmation
 
-> Assumptions currently marked as "Open" in the Assumptions Log that the client can confirm or invalidate.
+> RAID Log entries currently marked as "Open" — assumptions to confirm or invalidate, dependencies to confirm with the owner, risks to validate with the client.
 
-| ID | Assumption | Status Needed |
-|---|---|---|
-| A-XXX | [Assumption statement] | Confirm / Invalidate |
+| ID | Type | Item | Status Needed |
+|---|---|---|---|
+| A-XXX | Assumption | [Assumption statement] | Confirm / Invalidate |
+| D-XXX | Dependency | [Dependency statement] | Confirm owner accepts |
+| R-XXX | Risk | [Risk statement] | Confirm probability / mitigation |
 
 ---
 
@@ -117,7 +119,7 @@
 
 > Notes for the BA's own reference — assumptions identified, risks flagged, documents to update after this call.
 
-- **Assumptions to add/update:** [Any new or resolved assumptions from this conversation]
-- **Decisions to document:** [Any decisions that need to be reflected in CRs, BRs, or the Assumptions Log]
+- **RAID items to add/update:** [Any new or resolved risks, assumptions, issues, or dependencies from this conversation]
+- **Decisions to document:** [Any decisions that need to be reflected in CRs, BRs, or the RAID Log]
 - **Follow-up to send:** [Summary email to client — see Decisions Made and Action Items above]
-- **Documents to update after this call:** [Glossary / Assumptions Log / open CR / other]
+- **Documents to update after this call:** [Glossary / RAID Log / open CR / other]

@@ -1,6 +1,6 @@
 # Client Kickoff Questionnaire — [Project Name]
 
-> **Purpose:** Structured set of questions for the BA to ask at project kickoff or client onboarding. Work through each section in order. Record answers directly in this document — it feeds the Glossary, Assumptions Log, Stakeholder Register, and Project Charter.
+> **Purpose:** Structured set of questions for the BA to ask at project kickoff or client onboarding. Work through each section in order. Record answers directly in this document — it feeds the Glossary, RAID Log, Stakeholder Register, and Project Charter.
 > **Date:** YYYY-MM-DD
 > **Attendees:** [List names and roles]
 > **Conducted by:** [BA Name]
@@ -192,7 +192,7 @@
 
 > Internal working notes — not shared with client.
 
-- **Assumptions identified:** [List any assumptions made during this call that should be added to the Assumptions Log]
+- **RAID items identified:** [List any risks, assumptions, issues, or dependencies surfaced in this call that should be added to the RAID Log]
 - **Glossary terms to add:** [New domain terms heard in this meeting]
-- **Risks flagged:** [Anything that concerns you about scope, stakeholders, or constraints]
+- **Stakeholders to add:** [Anyone mentioned who should appear in the Stakeholder Register]
 - **Next steps:** [What the BA will do after this meeting]

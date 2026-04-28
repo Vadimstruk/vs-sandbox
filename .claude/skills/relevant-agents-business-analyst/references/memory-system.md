@@ -24,7 +24,19 @@ Read access, write access, deny zones for Homer. Created at first run, adjusted 
 
 ### `project-context.md` — per-project knowledge
 
-For each project Homer has worked on, store: methodology profile, current Roadmap version, glossary refs, persona refs, recent CR IDs. Lets Homer pick up cleanly when re-engaged on a previously seen project.
+For each project Homer has worked on, store: methodology profile, current Roadmap version, glossary refs, persona refs, recent CR IDs, and a **Progress Tracker matrix**. Lets Homer pick up cleanly when re-engaged on a previously seen project and answer "what's done, what's next, what's blocked" without re-reading every doc.
+
+**Progress Tracker matrix shape (one per active project):**
+
+| Doc | Status | Sign-off | Location | Last Updated |
+|---|---|---|---|---|
+| Project Charter | not-started / drafting / in-review / signed-off / superseded | required: yes/no — date if signed | docs/client/charter/… | YYYY-MM-DD |
+| Stakeholder Register | … | … | … | … |
+| … | … | … | … | … |
+
+**Status values:** `not-started` · `drafting` · `in-review` · `signed-off` · `living` (for SDD / RAID / Roadmap which are continuously updated) · `superseded` · `out-of-profile` (artefact does not apply to this project's profile).
+
+The matrix is the single source of truth for *project progress* — `index.md` summarises the active project's pipeline in one or two sentences derived from the matrix. Update the matrix at every checkpoint (after every meaningful capability execution) and surface a one-liner status on activation.
 
 ### `patterns.md` — learned patterns
 
@@ -36,9 +48,9 @@ Significant project events: profile changes, phase transitions, big CRs, audit f
 
 ## Persistence strategy
 
-**Write-through (immediate):** methodology profile changes, new active project, profile-correctness alerts, user preferences.
+**Write-through (immediate):** methodology profile changes, new active project, profile-correctness alerts, user preferences. These are the only writes that happen mid-capability.
 
-**Checkpoint:** after every meaningful capability execution (`CR`, `RM`, `KO`, etc.), update `index.md` to reflect what just happened.
+**Checkpoint (batched at end of capability — Operating Rule 1):** after every meaningful capability execution (`CR`, `RM`, `KO`, etc.), update `index.md`, `project-context.md`, and `chronology.md` in **one consolidated pass at the close of the capability**, not after each action within it. Hold the changes in working context, then write all three files together (parallel tool calls). See `./operating-rules.md` § 1 for the full rule.
 
 **Save Session (`SS`):** explicit save of session insights to `patterns.md` and `chronology.md` — distilled to essentials.
 
