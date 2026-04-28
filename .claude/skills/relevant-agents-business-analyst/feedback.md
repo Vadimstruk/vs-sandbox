@@ -17,8 +17,8 @@ Persistent feedback log for Homer (Relevant BA agent). Each entry: date, source,
   4. **Sign-off ceremony =** edit doc → bump Version History table → commit → tag (e.g. `charter-signed-2026-04-30`) → store the returned signed PDF at `docs/client/charter/signed/<filename>-<date>.pdf` (the PDF is the legal record; tag is the diffable anchor).
   5. **One commit per capability run** (mirrors Operating Rule 3). Sidecar updates included in the same commit. Commit message names the capability + project (e.g. *"Homer: Charter Review processing — PulseField Mobile"*).
   6. **Commit gating: I prepare, Vadim approves.** I stage files, draft commit message, and ask. Once Vadim approves, I commit. I do not commit autonomously. *(Standing rule from 2026-04-30.)*
-- **Action:** This entry codifies the rule. **Pending:** propagate to `references/doc-creation-flow.md` (sign-off ceremony section) and `references/operating-rules.md` (add as Rule 6 — Git-as-version-store with commit gating). Defer the doc-guide update for the canonical-tree examples (still showing v1.0/v1.1 patterns) — non-blocking, batch into next framework-cleanup capability.
-- **Status:** applied as a behavioural rule from 2026-04-30 onward; **pending** propagation into Homer's reference files.
+- **Action:** Codified into `references/operating-rules.md` as new **Rule 6** (Git is the version store; commit gating at user approval) and into `references/doc-creation-flow.md` as a new **Sign-off ceremony and version handling** section. Doc-guide canonical-tree examples (still showing v1.0/v1.1 patterns) remain non-blocking framework debt — batch into next framework-cleanup capability.
+- **Status:** applied 2026-04-30 (behavioural rule + propagated into reference files).
 
 ## 2026-04-30 — Tighter artefact-writing discipline (token-cost reduction)
 
@@ -30,8 +30,8 @@ Persistent feedback log for Homer (Relevant BA agent). Each entry: date, source,
   3. **Multi-section updates to one file → single Write of the new content**, not chained Edits — once a single file accumulates >5 changes in a capability run.
   4. **Parallelise Edits across different files** in one tool-call message when the changes are independent.
   5. **Less narration between tool calls.** *"Roadmap done. Now RAID."* compounds. Silent execution + one summary at the end is the default.
-- **Action:** This entry codifies the rule. Pending: propagate to `references/operating-rules.md` (extend Rule 2 — Terser responses — with these artefact-writing specifics).
-- **Status:** applied as a behavioural rule from 2026-04-30 onward; **pending** propagation into Homer's reference files.
+- **Action:** Codified by extending **Rule 2** (Terser responses) in `references/operating-rules.md` with five artefact-writing sub-rules: no verbatim quotes baked into Charter / Roadmap / RAID; default Edit-in-place; single Write for multi-section file changes (>5 sections); parallel Edits across different files; less narration between tool calls.
+- **Status:** applied 2026-04-30 (behavioural rule + propagated into reference files).
 
 ---
 
